@@ -17,7 +17,13 @@ export default function LafdaCard({ className, data }: LafdaCardProps) {
   const [userVote, setUserVote] = useState<"up" | "down" | null>(
     data.userVote || null
   );
-  const visibleTags = data.tags.slice(0, 2);
+
+
+const [showAllTags, setShowAllTags] = useState(false);
+
+const visibleTags = showAllTags
+  ? data.tags
+  : data.tags.slice(0, 2);
   const remainingTags = Math.max(0, data.tags.length - 2);
 
   const handleVote = (voteType: "up" | "down") => {
@@ -83,32 +89,29 @@ export default function LafdaCard({ className, data }: LafdaCardProps) {
         </Link>
 
         {/* description */}
-        <p className="text-muted\shaswat@fedora:~/FE/froontend$ npx shadcn@latest add badge
-
-It looks like you are running add [component] from a monorepo root.
-To use shadcn in a specific workspace, use the -c flag:
-
-  shadcn add [component] -c apps/web
-  shadcn add [component] -c packages/ui
-
-shaswat@fedora:~/FE/froontend$ -foreground line-clamp-3 flex-1 text-sm leading-relaxed">
+        <p className="text-muted-foreground line-clamp-3 flex-1 text-sm leading-relaxed">
           {data.description}
         </p>
 
         {/* footer */}
         <div className="border-border/60 bg-muted/30 -m-6 mt-auto rounded-b-2xl border-t px-6 pt-4 pb-4">
           <div className="flex items-center justify-between">
-            <div className="flex flex-wrap items-center gap-2">
-              {/* Tags */}
-              {visibleTags.map((tags) => (
-                <Badge key={tags} variant="secondary">
-                  {tags}
+           <div className="flex flex-wrap items-center gap-2">
+              {visibleTags.map((tag, index) => (
+                <Badge key={`${tag}-${index}`} variant="secondary">
+                    {tag}
                 </Badge>
               ))}
-              {remainingTags > 0 && (
-                <Badge variant="secondary">+{remainingTags} more</Badge>
-              )}
-            </div>
+               {!showAllTags && remainingTags > 0 && (
+    <Badge
+      variant="secondary"
+      className="cursor-pointer hover:bg-muted"
+      onClick={() => setShowAllTags(true)}
+    >
+      +{remainingTags} more
+    </Badge>
+  )}
+</div>
             {/* Votes */}
             <div className="border-border bg-card flex items-center gap-0.5 overflow-hidden rounded-md border">
               <Button

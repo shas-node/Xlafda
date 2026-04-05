@@ -1,12 +1,16 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react'
 import Link from 'next/link';
 import  Sectionsubheading  from './section-subheading'
 import { mockXData } from '@/mock-data/mockdatalafda'
 import LafdaCard from '../lafda/lafda-card';
 import { cn } from '@workspace/ui/lib/utils'
+import { Button } from '@workspace/ui/components/button';
 export default function Lafdasection() {
-  const visiblelafda = mockXData.slice(0,4);
-  const hasmore = mockXData.length > 4;
+  const [visibleCount, setVisibleCount] = useState(4);
+
+const visiblelafda = mockXData.slice(0, visibleCount);
+const hasmore = visibleCount < mockXData.length;
   return (
     <section className='py-12 px-4 w-full font-poppins'>
         <Sectionsubheading
@@ -16,7 +20,7 @@ export default function Lafdasection() {
   
     <div className= {cn(
       "mt-8 grid gap-6",
-      "grid cols-1",
+      "grid-cols-1",
       "md: grid-cols-2",
        "lg: grid-cols-2",
         "xl: grid-cols-2"
@@ -27,15 +31,18 @@ export default function Lafdasection() {
 
       )}
     </div>
-    {hasmore &&(
-      <div className='mt-8 flex justify-center'>
-        <Link href = "/lafda">
-        <button variant= "outline">Show more E-lafda</button>
-        </Link>
+   {hasmore && (
+  <div className="mt-8 flex justify-center">
+    <Button
+      variant="outline"
+      onClick={() => setVisibleCount((prev) => prev + 4)}
+    >
+      Show more E-lafda
+    </Button>
       </div>
     )
-
-    }
+  }
+    
       </section >
   );
 }
