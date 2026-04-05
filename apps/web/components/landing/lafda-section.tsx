@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import  Sectionsubheading  from './section-subheading'
 import { mockXData } from '@/mock-data/mockdatalafda'
-import Lafdacard from '../lafda/lafda-card';
+import LafdaCard from '../lafda/lafda-card';
 import { cn } from '@workspace/ui/lib/utils'
 export default function Lafdasection() {
   const visiblelafda = mockXData.slice(0,4);
@@ -22,7 +22,7 @@ export default function Lafdasection() {
         "xl: grid-cols-2"
     )}>
       {visiblelafda.map((card) => (
-        <Lafdacard key = {card.id} data= {card}/>    
+        <LafdaCard key = {card.id} data= {card}/>    
        )
 
       )}
