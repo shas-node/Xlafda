@@ -27,7 +27,7 @@ export default function Navbar() {
        <Container className= 'py-4 px-4 font-poppins'>
         <div className='flex justify-between items-center'>
             <div className='flex items-baseline gap-4'> 
-                <Image className='size-10' src='/xlafda.png' alt='x-lafda' width={100} height={100} />
+                <Image className='size-10' src='/elafda.svg' alt='x-lafda' width={100} height={100} />
                 {navItems.map((item) => (
                     <Link key={item.href} href={item.href}>
                        <span className='text-sm font-medium text-gray-500 hover:text-gray-700'>{item.label}</span>

@@ -7,7 +7,8 @@ interface SectionSubheadingprops {
 
 }
 export default function Sectionsubheading({title,subtitle}: SectionSubheadingprops) {
-  return ( <div>
+  return ( 
+  <div>
    <h2 className='text-2xl font-black text-muted-foreground'>{title} </h2>
    <p>{subtitle}</p>
    </div>
